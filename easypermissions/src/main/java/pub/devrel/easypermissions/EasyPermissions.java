@@ -17,17 +17,9 @@ package pub.devrel.easypermissions;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Size;
-import android.support.annotation.StringRes;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import java.lang.reflect.InvocationTargetException;
@@ -35,6 +27,12 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Size;
+import androidx.annotation.StringRes;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import pub.devrel.easypermissions.helper.PermissionHelper;
 
 /**

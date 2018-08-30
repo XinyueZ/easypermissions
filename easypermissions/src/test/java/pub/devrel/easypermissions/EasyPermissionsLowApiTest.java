@@ -16,7 +16,6 @@ import org.robolectric.RuntimeEnvironment;
 import org.robolectric.android.controller.ActivityController;
 import org.robolectric.android.controller.FragmentController;
 import org.robolectric.annotation.Config;
-import org.robolectric.shadows.support.v4.SupportFragmentController;
 
 import java.util.ArrayList;
 

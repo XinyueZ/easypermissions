@@ -47,7 +47,7 @@ public class RationaleDialogClickListenerTest {
     @Mock
     private Fragment fragment;
     @Mock
-    private android.support.v4.app.Fragment supportFragment;
+    private androidx.fragment.app.Fragment supportFragment;
 
     @Before
     public void setUp() {

@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Build;
-import android.support.v4.app.Fragment;
 
 import java.util.Arrays;
 
+import androidx.fragment.app.Fragment;
 import pub.devrel.easypermissions.helper.PermissionHelper;
 
 /**

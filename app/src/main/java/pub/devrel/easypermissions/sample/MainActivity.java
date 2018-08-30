@@ -18,14 +18,14 @@ package pub.devrel.easypermissions.sample;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;

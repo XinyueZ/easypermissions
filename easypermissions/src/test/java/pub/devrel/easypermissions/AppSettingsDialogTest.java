@@ -2,7 +2,6 @@ package pub.devrel.easypermissions;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.widget.Button;
 
 import org.junit.After;
@@ -22,10 +21,10 @@ import org.robolectric.android.controller.FragmentController;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowApplication;
 import org.robolectric.shadows.ShadowIntent;
-import org.robolectric.shadows.support.v4.SupportFragmentController;
 
 import java.util.Objects;
 
+import androidx.appcompat.app.AlertDialog;
 import pub.devrel.easypermissions.testhelper.TestActivity;
 import pub.devrel.easypermissions.testhelper.TestFragment;
 import pub.devrel.easypermissions.testhelper.TestSupportFragment;

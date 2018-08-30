@@ -22,7 +22,6 @@ import org.robolectric.android.controller.ActivityController;
 import org.robolectric.android.controller.FragmentController;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowApplication;
-import org.robolectric.shadows.support.v4.SupportFragmentController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -344,8 +343,8 @@ public class EasyPermissionsTest {
 
         EasyPermissions.requestPermissions(spySupportActivity, RATIONALE, TestSupportActivity.REQUEST_CODE, ALL_PERMS);
 
-        android.support.v4.app.Fragment dialogFragment = spySupportActivity.getSupportFragmentManager()
-                .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
+        androidx.fragment.app.Fragment dialogFragment = spySupportActivity.getSupportFragmentManager()
+                                                                          .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
         assertThat(dialogFragment).isInstanceOf(RationaleDialogFragmentCompat.class);
 
         Dialog dialog = ((RationaleDialogFragmentCompat) dialogFragment).getDialog();
@@ -361,8 +360,8 @@ public class EasyPermissionsTest {
         EasyPermissions.requestPermissions(spySupportActivity, RATIONALE, android.R.string.ok,
                 android.R.string.cancel, TestSupportActivity.REQUEST_CODE, ALL_PERMS);
 
-        android.support.v4.app.Fragment dialogFragment = spySupportActivity.getSupportFragmentManager()
-                .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
+        androidx.fragment.app.Fragment dialogFragment = spySupportActivity.getSupportFragmentManager()
+                                                                          .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
         assertThat(dialogFragment).isInstanceOf(RationaleDialogFragmentCompat.class);
 
         Dialog dialog = ((RationaleDialogFragmentCompat) dialogFragment).getDialog();
@@ -383,8 +382,8 @@ public class EasyPermissionsTest {
                 .build();
         EasyPermissions.requestPermissions(request);
 
-        android.support.v4.app.Fragment dialogFragment = spySupportActivity.getSupportFragmentManager()
-                .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
+        androidx.fragment.app.Fragment dialogFragment = spySupportActivity.getSupportFragmentManager()
+                                                                          .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
         assertThat(dialogFragment).isInstanceOf(RationaleDialogFragmentCompat.class);
 
         Dialog dialog = ((RationaleDialogFragmentCompat) dialogFragment).getDialog();
@@ -669,8 +668,8 @@ public class EasyPermissionsTest {
         EasyPermissions.requestPermissions(spySupportFragment, RATIONALE, android.R.string.ok,
                 android.R.string.cancel, TestSupportFragment.REQUEST_CODE, ALL_PERMS);
 
-        android.support.v4.app.Fragment dialogFragment = spySupportFragment.getChildFragmentManager()
-                .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
+        androidx.fragment.app.Fragment dialogFragment = spySupportFragment.getChildFragmentManager()
+                                                                          .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
         assertThat(dialogFragment).isInstanceOf(RationaleDialogFragmentCompat.class);
 
         Dialog dialog = ((RationaleDialogFragmentCompat) dialogFragment).getDialog();
@@ -685,8 +684,8 @@ public class EasyPermissionsTest {
 
         EasyPermissions.requestPermissions(spySupportFragment, RATIONALE, TestSupportFragment.REQUEST_CODE, ALL_PERMS);
 
-        android.support.v4.app.Fragment dialogFragment = spySupportFragment.getChildFragmentManager()
-                .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
+        androidx.fragment.app.Fragment dialogFragment = spySupportFragment.getChildFragmentManager()
+                                                                          .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
         assertThat(dialogFragment).isInstanceOf(RationaleDialogFragmentCompat.class);
 
         Dialog dialog = ((RationaleDialogFragmentCompat) dialogFragment).getDialog();
@@ -706,8 +705,8 @@ public class EasyPermissionsTest {
                 .build();
         EasyPermissions.requestPermissions(request);
 
-        android.support.v4.app.Fragment dialogFragment = spySupportFragment.getChildFragmentManager()
-                .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
+        androidx.fragment.app.Fragment dialogFragment = spySupportFragment.getChildFragmentManager()
+                                                                          .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
         assertThat(dialogFragment).isInstanceOf(RationaleDialogFragmentCompat.class);
 
         Dialog dialog = ((RationaleDialogFragmentCompat) dialogFragment).getDialog();
