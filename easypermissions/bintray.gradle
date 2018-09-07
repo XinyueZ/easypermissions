@@ -85,9 +85,11 @@ publishing {
     }
 }
 
+def ossrh_user = project.hasProperty('OSSRH_USER') ? project.OSSRH_USER : System.getenv('OSSRH_USER')
+def ossrh_pwd = project.hasProperty('OSSRH_PASSWORD') ? project.OSSRH_PASSWORD : System.getenv('OSSRH_PASSWORD')
 bintray {
-    user = hasProperty('BINTRAY_USER') ? getProperty('BINTRAY_USER') : System.getenv('BINTRAY_USER')
-    key = hasProperty('BINTRAY_KEY') ? getProperty('BINTRAY_KEY') : System.getenv('BINTRAY_KEY')
+    user = project.hasProperty('BINTRAY_USER') ? project.BINTRAY_USER : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('BINTRAY_KEY') ? project.BINTRAY_KEY : System.getenv('BINTRAY_KEY')
 
     filesSpec {
         from "$buildDir/publications/library/pom-default.xml"
@@ -109,6 +111,12 @@ bintray {
         version {
             name = mavenVersion
             released = new Date()
+
+//            mavenCentralSync {
+//                sync = true
+//                user = ossrh_user
+//                password = ossrh_pwd
+//            }
         }
     }
 }
