@@ -1,5 +1,7 @@
 # EasyPermissions (Support Jetpack & androidx)
 
+[![Build Status](https://travis-ci.com/XinyueZ/easypermissions.svg?branch=feature%2Fandroidx)](https://travis-ci.com/XinyueZ/easypermissions)
+
 A fork version to support Jetpack which is still a block of origin project.
 
 EasyPermissions is a wrapper library to simplify basic system permissions logic when targeting
