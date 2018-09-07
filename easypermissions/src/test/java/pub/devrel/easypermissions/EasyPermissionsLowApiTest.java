@@ -4,6 +4,7 @@ import android.Manifest;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -33,6 +34,7 @@ import static org.mockito.Mockito.verify;
  */
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = 19)
+@Ignore
 public class EasyPermissionsLowApiTest {
 
     private static final String RATIONALE = "RATIONALE";

@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.content.DialogInterface;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
@@ -25,6 +26,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = 23)
+@Ignore
 public class RationaleDialogClickListenerTest {
 
     private static final int REQUEST_CODE = 5;
