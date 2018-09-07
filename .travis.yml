@@ -1,4 +1,6 @@
 language: android
+notifications:
+  slack: devxinyuezhao:6nLYv1EMjZOCmBjJAlQigURe
 jdk: oraclejdk8
 
 before_cache:
