@@ -1,4 +1,6 @@
-# EasyPermissions [![Build Status][1]][2] [![Code Coverage][3]][4] [![Android Weekly][5]][6]
+# EasyPermissions (Support Jetpack & androidx)
+
+A fork version to support Jetpack which is still a block of origin project.
 
 EasyPermissions is a wrapper library to simplify basic system permissions logic when targeting
 Android M or higher.
@@ -9,7 +11,7 @@ EasyPermissions is installed by adding the following dependency to your `build.g
 
 ```groovy
 dependencies {
-    implementation 'pub.devrel:easypermissions:1.3.0'
+    implementation "com.github.xinyuez:easypermissions:1.3.0"
 }
 ```
 
@@ -177,7 +179,7 @@ Rationale callbacks don't necessarily imply permission changes. To check for tho
 ## LICENSE
 
 ```
-	Copyright 2017 Google
+	Copyright 2018 Google, Chris Xinyue Zhao
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
