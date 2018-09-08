@@ -1,6 +1,8 @@
 buildscript {
     repositories {
-        mavenCentral()
+        maven {
+        url "https://dl.bintray.com/javendev/maven"
+    }
         jcenter()
         google()
     }
@@ -14,7 +16,9 @@ buildscript {
 
 allprojects {
     repositories {
-        mavenCentral()
+        maven {
+        url "https://dl.bintray.com/javendev/maven"
+    }
         jcenter()
         google()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
