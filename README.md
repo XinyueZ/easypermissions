@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/XinyueZ/easypermissions.svg?branch=feature%2Fandroidx)](https://travis-ci.com/XinyueZ/easypermissions)
 [ ![Download](https://api.bintray.com/packages/devxinyuezhao/EasypermissionX/easypermissions/images/download.svg) ](https://bintray.com/devxinyuezhao/EasypermissionX/easypermissions/_latestVersion)
 
-A fork version to support Jetpack which is still a block of origin project.
+A fork version to support Jetpack which is still a block of origin project. The repo won't be updated after the origin project being switched to Jetpack.
 
 EasyPermissions is a wrapper library to simplify basic system permissions logic when targeting
 Android M or higher.
@@ -13,10 +13,6 @@ Android M or higher.
 EasyPermissions is installed by adding the following dependency to your `build.gradle` file:
 
 ```groovy
-maven {
-            url "https://dl.bintray.com/devxinyuezhao/EasypermissionX"
-        }
-
 dependencies {
     implementation "com.github.xinyuez:easypermissions:1.3.0"
 }

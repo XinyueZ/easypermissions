@@ -1,8 +1,5 @@
 buildscript {
     repositories {
-        maven {
-            url "https://dl.bintray.com/devxinyuezhao/EasypermissionX"
-        }
         jcenter()
         google()
     }
@@ -16,9 +13,6 @@ buildscript {
 
 allprojects {
     repositories {
-        maven {
-            url "https://dl.bintray.com/devxinyuezhao/EasypermissionX"
-        }
         jcenter()
         google()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
