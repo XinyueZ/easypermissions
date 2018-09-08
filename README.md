@@ -12,6 +12,10 @@ Android M or higher.
 EasyPermissions is installed by adding the following dependency to your `build.gradle` file:
 
 ```groovy
+maven {
+            url "https://dl.bintray.com/devxinyuezhao/EasypermissionX"
+        }
+
 dependencies {
     implementation "com.github.xinyuez:easypermissions:1.3.0"
 }
