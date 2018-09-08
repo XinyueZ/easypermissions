@@ -1,6 +1,7 @@
 # EasyPermissions (Support Jetpack & androidx)
 
 [![Build Status](https://travis-ci.com/XinyueZ/easypermissions.svg?branch=feature%2Fandroidx)](https://travis-ci.com/XinyueZ/easypermissions)
+[ ![Download](https://api.bintray.com/packages/devxinyuezhao/EasypermissionX/easypermissions/images/download.svg) ](https://bintray.com/devxinyuezhao/EasypermissionX/easypermissions/_latestVersion)
 
 A fork version to support Jetpack which is still a block of origin project.
 
@@ -201,9 +202,4 @@ Rationale callbacks don't necessarily imply permission changes. To check for tho
 
 ```
 
-[1]: https://travis-ci.org/googlesamples/easypermissions.svg?branch=master
-[2]: https://travis-ci.org/googlesamples/easypermissions
-[3]: https://codecov.io/gh/googlesamples/easypermissions/branch/master/graph/badge.svg
-[4]: https://codecov.io/gh/googlesamples/easypermissions
-[5]: https://img.shields.io/badge/Android%20Weekly-%23185-2CB3E5.svg?style=flat
-[6]: http://androidweekly.net/issues/issue-185
+
