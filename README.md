@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/XinyueZ/easypermissions.svg?branch=feature%2Fandroidx)](https://travis-ci.com/XinyueZ/easypermissions)
 [ ![Download](https://api.bintray.com/packages/devxinyuezhao/EasypermissionX/easypermissions/images/download.svg) ](https://bintray.com/devxinyuezhao/EasypermissionX/easypermissions/_latestVersion)
 
-A fork version to support Jetpack which is still a block of origin project. The repo won't be updated after the origin project being switched to Jetpack.
+A fork version to support Jetpack which is still a [block](https://github.com/googlesamples/easypermissions/issues/245) of the origin project. This repo won't be updated after the origin project being switched to Jetpack. Please visit [origin project](https://github.com/googlesamples/easypermissions) for bug report etc, here is only the mirror for `androidx` .
 
 EasyPermissions is a wrapper library to simplify basic system permissions logic when targeting
 Android M or higher.
