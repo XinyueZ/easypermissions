@@ -14,7 +14,7 @@ EasyPermissions is installed by adding the following dependency to your `build.g
 
 ```groovy
 dependencies {
-    implementation "com.github.xinyuez:easypermissions:1.3.0"
+    implementation "com.github.xinyuez:easypermissions:2.0.0"
 }
 ```
 
