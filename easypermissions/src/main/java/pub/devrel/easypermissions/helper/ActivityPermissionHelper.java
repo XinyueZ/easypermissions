@@ -17,7 +17,7 @@ import pub.devrel.easypermissions.RationaleDialogFragment;
 class ActivityPermissionHelper extends PermissionHelper<Activity> {
     private static final String TAG = "ActPermissionHelper";
 
-    public ActivityPermissionHelper(Activity host) {
+    ActivityPermissionHelper(Activity host) {
         super(host);
     }
 

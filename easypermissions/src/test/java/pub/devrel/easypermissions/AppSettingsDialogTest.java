@@ -6,7 +6,6 @@ import android.widget.Button;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -38,7 +37,6 @@ import static pub.devrel.easypermissions.AppSettingsDialog.DEFAULT_SETTINGS_REQ_
 
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = 23)
-@Ignore
 public class AppSettingsDialogTest {
 
     private static final String TITLE = "TITLE";
