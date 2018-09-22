@@ -8,8 +8,8 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StyleRes;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Delegate class to make permission calls based on the 'host' (Fragment, Activity, etc).
@@ -24,8 +24,8 @@ public abstract class PermissionHelper<T> {
             return new LowApiPermissionsHelper<>(host);
         }
 
-        if (host instanceof AppCompatActivity)
-            return new AppCompatActivityPermissionHelper((AppCompatActivity) host);
+        if (host instanceof FragmentActivity)
+            return new FragmentActivityPermissionHelper((FragmentActivity) host);
         else {
             return new ActivityPermissionHelper(host);
         }
@@ -38,15 +38,6 @@ public abstract class PermissionHelper<T> {
         }
 
         return new SupportFragmentPermissionHelper(host);
-    }
-
-    @NonNull
-    public static PermissionHelper<android.app.Fragment> newInstance(android.app.Fragment host) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return new LowApiPermissionsHelper<>(host);
-        }
-
-        return new FrameworkFragmentPermissionHelper(host);
     }
 
     // ============================================================================

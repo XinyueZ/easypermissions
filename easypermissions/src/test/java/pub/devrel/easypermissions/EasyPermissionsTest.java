@@ -20,7 +20,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.android.controller.ActivityController;
-import org.robolectric.android.controller.FragmentController;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowApplication;
 
@@ -31,7 +30,6 @@ import java.util.Collections;
 import pub.devrel.easypermissions.testhelper.TestActivity;
 import pub.devrel.easypermissions.testhelper.TestFragment;
 import pub.devrel.easypermissions.testhelper.TestSupportActivity;
-import pub.devrel.easypermissions.testhelper.TestSupportFragment;
 
 import static com.google.common.truth.Truth.assertThat;
 import static junit.framework.Assert.fail;
@@ -62,11 +60,9 @@ public class EasyPermissionsTest {
     private TestActivity spyActivity;
     private TestSupportActivity spySupportActivity;
     private TestFragment spyFragment;
-    private TestSupportFragment spySupportFragment;
     private ActivityController<TestActivity> activityController;
     private ActivityController<TestSupportActivity> supportActivityController;
-    private FragmentController<TestFragment> fragmentController;
-    private SupportFragmentController<TestSupportFragment> supportFragmentController;
+    private SupportFragmentController<TestFragment> fragmentController;
     @Captor
     private ArgumentCaptor<Integer> integerCaptor;
     @Captor
@@ -111,7 +107,7 @@ public class EasyPermissionsTest {
             fail("IllegalStateException expected because of null context.");
         } catch (IllegalArgumentException e) {
             assertThat(e).hasMessageThat()
-                    .isEqualTo("Can't check permissions for null context");
+                         .isEqualTo("Can't check permissions for null context");
         }
     }
 
@@ -187,29 +183,11 @@ public class EasyPermissionsTest {
         EasyPermissions.requestPermissions(spyActivity, RATIONALE, TestActivity.REQUEST_CODE, ALL_PERMS);
 
         Fragment dialogFragment = spyActivity.getFragmentManager()
-                .findFragmentByTag(RationaleDialogFragment.TAG);
+                                             .findFragmentByTag(RationaleDialogFragment.TAG);
         assertThat(dialogFragment).isInstanceOf(RationaleDialogFragment.class);
 
         Dialog dialog = ((RationaleDialogFragment) dialogFragment).getDialog();
         assertThatHasExpectedRationale(dialog, RATIONALE);
-    }
-
-    @SuppressWarnings("deprecation")
-    @Test
-    public void shouldShowCorrectDialogUsingDeprecated_whenMissingPermissionsAndShowRationaleFromActivity() {
-        grantPermissions(ONE_PERM);
-        showRationale(true, ALL_PERMS);
-
-        EasyPermissions.requestPermissions(spyActivity, RATIONALE, android.R.string.ok,
-                android.R.string.cancel, TestActivity.REQUEST_CODE, ALL_PERMS);
-
-        Fragment dialogFragment = spyActivity.getFragmentManager()
-                .findFragmentByTag(RationaleDialogFragment.TAG);
-        assertThat(dialogFragment).isInstanceOf(RationaleDialogFragment.class);
-
-        Dialog dialog = ((RationaleDialogFragment) dialogFragment).getDialog();
-        assertThatHasExpectedButtonsAndRationale(dialog, RATIONALE,
-                android.R.string.ok, android.R.string.cancel);
     }
 
     @Test
@@ -226,12 +204,12 @@ public class EasyPermissionsTest {
         EasyPermissions.requestPermissions(request);
 
         Fragment dialogFragment = spyActivity.getFragmentManager()
-                .findFragmentByTag(RationaleDialogFragment.TAG);
+                                             .findFragmentByTag(RationaleDialogFragment.TAG);
         assertThat(dialogFragment).isInstanceOf(RationaleDialogFragment.class);
 
         Dialog dialog = ((RationaleDialogFragment) dialogFragment).getDialog();
         assertThatHasExpectedButtonsAndRationale(dialog, android.R.string.unknownName,
-                android.R.string.ok, android.R.string.cancel);
+                                                 android.R.string.ok, android.R.string.cancel);
     }
 
     @Test
@@ -345,30 +323,12 @@ public class EasyPermissionsTest {
 
         EasyPermissions.requestPermissions(spySupportActivity, RATIONALE, TestSupportActivity.REQUEST_CODE, ALL_PERMS);
 
-        androidx.fragment.app.Fragment dialogFragment = spySupportActivity.getSupportFragmentManager()
-                                                                          .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
+       androidx.fragment.app.Fragment dialogFragment = spySupportActivity.getSupportFragmentManager()
+                                                                         .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
         assertThat(dialogFragment).isInstanceOf(RationaleDialogFragmentCompat.class);
 
         Dialog dialog = ((RationaleDialogFragmentCompat) dialogFragment).getDialog();
         assertThatHasExpectedRationale(dialog, RATIONALE);
-    }
-
-    @SuppressWarnings("deprecation")
-    @Test
-    public void shouldShowCorrectDialogUsingDeprecated_whenMissingPermissionsAndShowRationaleFromSupportActivity() {
-        grantPermissions(ONE_PERM);
-        showRationale(true, ALL_PERMS);
-
-        EasyPermissions.requestPermissions(spySupportActivity, RATIONALE, android.R.string.ok,
-                android.R.string.cancel, TestSupportActivity.REQUEST_CODE, ALL_PERMS);
-
-        androidx.fragment.app.Fragment dialogFragment = spySupportActivity.getSupportFragmentManager()
-                                                                          .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
-        assertThat(dialogFragment).isInstanceOf(RationaleDialogFragmentCompat.class);
-
-        Dialog dialog = ((RationaleDialogFragmentCompat) dialogFragment).getDialog();
-        assertThatHasExpectedButtonsAndRationale(dialog, RATIONALE,
-                android.R.string.ok, android.R.string.cancel);
     }
 
     @Test
@@ -384,13 +344,13 @@ public class EasyPermissionsTest {
                 .build();
         EasyPermissions.requestPermissions(request);
 
-        androidx.fragment.app.Fragment dialogFragment = spySupportActivity.getSupportFragmentManager()
-                                                                          .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
+       androidx.fragment.app.Fragment dialogFragment = spySupportActivity.getSupportFragmentManager()
+                                                                         .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
         assertThat(dialogFragment).isInstanceOf(RationaleDialogFragmentCompat.class);
 
         Dialog dialog = ((RationaleDialogFragmentCompat) dialogFragment).getDialog();
         assertThatHasExpectedButtonsAndRationale(dialog, android.R.string.unknownName,
-                android.R.string.ok, android.R.string.cancel);
+                                                 android.R.string.ok, android.R.string.cancel);
     }
 
     @Test
@@ -435,11 +395,10 @@ public class EasyPermissionsTest {
         assertThat(EasyPermissions.permissionPermanentlyDenied(spySupportActivity, Manifest.permission.READ_SMS)).isFalse();
     }
 
-    // ------ From Fragment ------
-
     @Test
     public void shouldCorrectlyCallback_whenOnRequestPermissionResultCalledFromFragment() {
-        EasyPermissions.onRequestPermissionsResult(TestFragment.REQUEST_CODE, ALL_PERMS, SMS_DENIED_RESULT, spyFragment);
+        EasyPermissions.onRequestPermissionsResult(TestFragment.REQUEST_CODE, ALL_PERMS, SMS_DENIED_RESULT,
+                                                   spyFragment);
 
         verify(spyFragment, times(1))
                 .onPermissionsGranted(integerCaptor.capture(), listCaptor.capture());
@@ -460,7 +419,8 @@ public class EasyPermissionsTest {
     public void shouldCallbackOnPermissionGranted_whenRequestAlreadyGrantedPermissionsFromFragment() {
         grantPermissions(ALL_PERMS);
 
-        EasyPermissions.requestPermissions(spyFragment, RATIONALE, TestFragment.REQUEST_CODE, ALL_PERMS);
+        EasyPermissions.requestPermissions(spyFragment, RATIONALE,
+                                           TestFragment.REQUEST_CODE, ALL_PERMS);
 
         verify(spyFragment, times(1))
                 .onPermissionsGranted(integerCaptor.capture(), listCaptor.capture());
@@ -470,7 +430,7 @@ public class EasyPermissionsTest {
     }
 
     @Test
-    public void shouldCallbackAfterPermissionGranted_whenRequestAlreadyGrantedPermissionsFromFragment() {
+    public void shouldCallbackAfterPermissionGranted_whenRequestAlreadyGrantedPermissionsFragment() {
         grantPermissions(ALL_PERMS);
 
         EasyPermissions.requestPermissions(spyFragment, RATIONALE, TestFragment.REQUEST_CODE, ALL_PERMS);
@@ -506,30 +466,12 @@ public class EasyPermissionsTest {
 
         EasyPermissions.requestPermissions(spyFragment, RATIONALE, TestFragment.REQUEST_CODE, ALL_PERMS);
 
-        Fragment dialogFragment = spyFragment.getChildFragmentManager()
-                .findFragmentByTag(RationaleDialogFragment.TAG);
-        assertThat(dialogFragment).isInstanceOf(RationaleDialogFragment.class);
+        androidx.fragment.app.Fragment dialogFragment = spyFragment.getChildFragmentManager()
+                                                           .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
+        assertThat(dialogFragment).isInstanceOf(RationaleDialogFragmentCompat.class);
 
-        Dialog dialog = ((RationaleDialogFragment) dialogFragment).getDialog();
+        Dialog dialog = ((RationaleDialogFragmentCompat) dialogFragment).getDialog();
         assertThatHasExpectedRationale(dialog, RATIONALE);
-    }
-
-    @SuppressWarnings("deprecation")
-    @Test
-    public void shouldShowCorrectDialogUsingDeprecated_whenMissingPermissionsAndShowRationaleFromFragment() {
-        grantPermissions(ONE_PERM);
-        showRationale(true, ALL_PERMS);
-
-        EasyPermissions.requestPermissions(spyFragment, RATIONALE, android.R.string.ok,
-                android.R.string.cancel, TestFragment.REQUEST_CODE, ALL_PERMS);
-
-        Fragment dialogFragment = spyFragment.getChildFragmentManager()
-                .findFragmentByTag(RationaleDialogFragment.TAG);
-        assertThat(dialogFragment).isInstanceOf(RationaleDialogFragment.class);
-
-        Dialog dialog = ((RationaleDialogFragment) dialogFragment).getDialog();
-        assertThatHasExpectedButtonsAndRationale(dialog, RATIONALE,
-                android.R.string.ok, android.R.string.cancel);
     }
 
     @Test
@@ -538,20 +480,19 @@ public class EasyPermissionsTest {
         showRationale(true, ALL_PERMS);
 
         PermissionRequest request = new PermissionRequest.Builder(spyFragment, TestFragment.REQUEST_CODE, ALL_PERMS)
-                .setPositiveButtonText(android.R.string.ok)
-                .setNegativeButtonText(android.R.string.cancel)
-                .setRationale(android.R.string.unknownName)
+                .setPositiveButtonText(POSITIVE)
+                .setNegativeButtonText(NEGATIVE)
+                .setRationale(RATIONALE)
                 .setTheme(R.style.Theme_AppCompat)
                 .build();
         EasyPermissions.requestPermissions(request);
 
-        Fragment dialogFragment = spyFragment.getChildFragmentManager()
-                .findFragmentByTag(RationaleDialogFragment.TAG);
-        assertThat(dialogFragment).isInstanceOf(RationaleDialogFragment.class);
+        androidx.fragment.app.Fragment dialogFragment = spyFragment.getChildFragmentManager()
+                                                                    .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
+        assertThat(dialogFragment).isInstanceOf(RationaleDialogFragmentCompat.class);
 
-        Dialog dialog = ((RationaleDialogFragment) dialogFragment).getDialog();
-        assertThatHasExpectedButtonsAndRationale(dialog, android.R.string.unknownName,
-                android.R.string.ok, android.R.string.cancel);
+        Dialog dialog = ((RationaleDialogFragmentCompat) dialogFragment).getDialog();
+        assertThatHasExpectedButtonsAndRationale(dialog, RATIONALE, POSITIVE, NEGATIVE);
     }
 
     @Test
@@ -582,6 +523,7 @@ public class EasyPermissionsTest {
         assertThat(EasyPermissions.somePermissionPermanentlyDenied(spyFragment, Arrays.asList(ALL_PERMS))).isFalse();
     }
 
+
     @Test
     public void shouldHavePermissionPermanentlyDenied_whenNotShowRationaleFromFragment() {
         showRationale(false, Manifest.permission.READ_SMS);
@@ -594,168 +536,6 @@ public class EasyPermissionsTest {
         showRationale(true, Manifest.permission.READ_SMS);
 
         assertThat(EasyPermissions.permissionPermanentlyDenied(spyFragment, Manifest.permission.READ_SMS)).isFalse();
-    }
-
-    // ------ From Support Fragment  ------
-
-    @Test
-    public void shouldCorrectlyCallback_whenOnRequestPermissionResultCalledFromSupportFragment() {
-        EasyPermissions.onRequestPermissionsResult(TestSupportFragment.REQUEST_CODE, ALL_PERMS, SMS_DENIED_RESULT, spySupportFragment);
-
-        verify(spySupportFragment, times(1))
-                .onPermissionsGranted(integerCaptor.capture(), listCaptor.capture());
-        assertThat(integerCaptor.getValue()).isEqualTo(TestSupportFragment.REQUEST_CODE);
-        assertThat(listCaptor.getValue())
-                .containsAllIn(new ArrayList<>(Collections.singletonList(Manifest.permission.ACCESS_FINE_LOCATION)));
-
-        verify(spySupportFragment, times(1))
-                .onPermissionsDenied(integerCaptor.capture(), listCaptor.capture());
-        assertThat(integerCaptor.getValue()).isEqualTo(TestSupportFragment.REQUEST_CODE);
-        assertThat(listCaptor.getValue())
-                .containsAllIn(new ArrayList<>(Collections.singletonList(Manifest.permission.READ_SMS)));
-
-        verify(spySupportFragment, never()).afterPermissionGranted();
-    }
-
-    @Test
-    public void shouldCallbackOnPermissionGranted_whenRequestAlreadyGrantedPermissionsFromSupportFragment() {
-        grantPermissions(ALL_PERMS);
-
-        EasyPermissions.requestPermissions(spySupportFragment, RATIONALE,
-                TestSupportFragment.REQUEST_CODE, ALL_PERMS);
-
-        verify(spySupportFragment, times(1))
-                .onPermissionsGranted(integerCaptor.capture(), listCaptor.capture());
-        verify(spySupportFragment, never()).requestPermissions(any(String[].class), anyInt());
-        assertThat(integerCaptor.getValue()).isEqualTo(TestSupportFragment.REQUEST_CODE);
-        assertThat(listCaptor.getValue()).containsAllIn(ALL_PERMS);
-    }
-
-    @Test
-    public void shouldCallbackAfterPermissionGranted_whenRequestAlreadyGrantedPermissionsSupportFragment() {
-        grantPermissions(ALL_PERMS);
-
-        EasyPermissions.requestPermissions(spySupportFragment, RATIONALE, TestSupportFragment.REQUEST_CODE, ALL_PERMS);
-
-        // Called 2 times because this is a spy and library implementation invokes super classes annotated methods as well
-        verify(spySupportFragment, times(2)).afterPermissionGranted();
-    }
-
-    @Test
-    public void shouldNotCallbackAfterPermissionGranted_whenRequestNotGrantedPermissionsFromSupportFragment() {
-        grantPermissions(ONE_PERM);
-
-        EasyPermissions.requestPermissions(spySupportFragment, RATIONALE, TestSupportFragment.REQUEST_CODE, ALL_PERMS);
-
-        verify(spySupportFragment, never()).afterPermissionGranted();
-    }
-
-    @Test
-    public void shouldRequestPermissions_whenMissingPermissionsAndNotShowRationaleFromSupportFragment() {
-        grantPermissions(ONE_PERM);
-        showRationale(false, ALL_PERMS);
-
-        EasyPermissions.requestPermissions(spySupportFragment, RATIONALE, TestSupportFragment.REQUEST_CODE, ALL_PERMS);
-
-        verify(spySupportFragment, times(1))
-                .requestPermissions(ALL_PERMS, TestSupportFragment.REQUEST_CODE);
-    }
-
-    @SuppressWarnings("deprecation")
-    @Test
-    public void shouldShowCorrectDialogUsingDeprecated_whenMissingPermissionsAndShowRationaleFromSupportFragment() {
-        grantPermissions(ONE_PERM);
-        showRationale(true, ALL_PERMS);
-
-        EasyPermissions.requestPermissions(spySupportFragment, RATIONALE, android.R.string.ok,
-                android.R.string.cancel, TestSupportFragment.REQUEST_CODE, ALL_PERMS);
-
-        androidx.fragment.app.Fragment dialogFragment = spySupportFragment.getChildFragmentManager()
-                                                                          .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
-        assertThat(dialogFragment).isInstanceOf(RationaleDialogFragmentCompat.class);
-
-        Dialog dialog = ((RationaleDialogFragmentCompat) dialogFragment).getDialog();
-        assertThatHasExpectedButtonsAndRationale(dialog, RATIONALE,
-                android.R.string.ok, android.R.string.cancel);
-    }
-
-    @Test
-    public void shouldShowCorrectDialog_whenMissingPermissionsAndShowRationaleFromSupportFragment() {
-        grantPermissions(ONE_PERM);
-        showRationale(true, ALL_PERMS);
-
-        EasyPermissions.requestPermissions(spySupportFragment, RATIONALE, TestSupportFragment.REQUEST_CODE, ALL_PERMS);
-
-        androidx.fragment.app.Fragment dialogFragment = spySupportFragment.getChildFragmentManager()
-                                                                          .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
-        assertThat(dialogFragment).isInstanceOf(RationaleDialogFragmentCompat.class);
-
-        Dialog dialog = ((RationaleDialogFragmentCompat) dialogFragment).getDialog();
-        assertThatHasExpectedRationale(dialog, RATIONALE);
-    }
-
-    @Test
-    public void shouldShowCorrectDialogUsingRequest_whenMissingPermissionsAndShowRationaleFromSupportFragment() {
-        grantPermissions(ONE_PERM);
-        showRationale(true, ALL_PERMS);
-
-        PermissionRequest request = new PermissionRequest.Builder(spySupportFragment, TestSupportFragment.REQUEST_CODE, ALL_PERMS)
-                .setPositiveButtonText(POSITIVE)
-                .setNegativeButtonText(NEGATIVE)
-                .setRationale(RATIONALE)
-                .setTheme(R.style.Theme_AppCompat)
-                .build();
-        EasyPermissions.requestPermissions(request);
-
-        androidx.fragment.app.Fragment dialogFragment = spySupportFragment.getChildFragmentManager()
-                                                                          .findFragmentByTag(RationaleDialogFragmentCompat.TAG);
-        assertThat(dialogFragment).isInstanceOf(RationaleDialogFragmentCompat.class);
-
-        Dialog dialog = ((RationaleDialogFragmentCompat) dialogFragment).getDialog();
-        assertThatHasExpectedButtonsAndRationale(dialog, RATIONALE, POSITIVE, NEGATIVE);
-    }
-
-    @Test
-    public void shouldHaveSomePermissionDenied_whenShowRationaleFromSupportFragment() {
-        showRationale(true, ALL_PERMS);
-
-        assertThat(EasyPermissions.somePermissionDenied(spySupportFragment, ALL_PERMS)).isTrue();
-    }
-
-    @Test
-    public void shouldNotHaveSomePermissionDenied_whenNotShowRationaleFromSupportFragment() {
-        showRationale(false, ALL_PERMS);
-
-        assertThat(EasyPermissions.somePermissionDenied(spySupportFragment, ALL_PERMS)).isFalse();
-    }
-
-    @Test
-    public void shouldHaveSomePermissionPermanentlyDenied_whenNotShowRationaleFromSupportFragment() {
-        showRationale(false, ALL_PERMS);
-
-        assertThat(EasyPermissions.somePermissionPermanentlyDenied(spySupportFragment, Arrays.asList(ALL_PERMS))).isTrue();
-    }
-
-    @Test
-    public void shouldNotHaveSomePermissionPermanentlyDenied_whenShowRationaleFromSupportFragment() {
-        showRationale(true, ALL_PERMS);
-
-        assertThat(EasyPermissions.somePermissionPermanentlyDenied(spySupportFragment, Arrays.asList(ALL_PERMS))).isFalse();
-    }
-
-
-    @Test
-    public void shouldHavePermissionPermanentlyDenied_whenNotShowRationaleFromSupportFragment() {
-        showRationale(false, Manifest.permission.READ_SMS);
-
-        assertThat(EasyPermissions.permissionPermanentlyDenied(spySupportFragment, Manifest.permission.READ_SMS)).isTrue();
-    }
-
-    @Test
-    public void shouldNotHavePermissionPermanentlyDenied_whenShowRationaleFromSupportFragment() {
-        showRationale(true, Manifest.permission.READ_SMS);
-
-        assertThat(EasyPermissions.permissionPermanentlyDenied(spySupportFragment, Manifest.permission.READ_SMS)).isFalse();
     }
 
     private void assertThatHasExpectedButtonsAndRationale(Dialog dialog, int rationale,
@@ -795,25 +575,21 @@ public class EasyPermissionsTest {
 
     private void setUpActivityAndFragment() {
         activityController = Robolectric.buildActivity(TestActivity.class)
-                .create().start().resume();
+                                        .create().start().resume();
         supportActivityController = Robolectric.buildActivity(TestSupportActivity.class)
-                .create().start().resume();
-        fragmentController = Robolectric.buildFragment(TestFragment.class)
-                .create().start().resume();
-        supportFragmentController = SupportFragmentController.of(new TestSupportFragment())
-                .create().start().resume();
+                                               .create().start().resume();
+        fragmentController = SupportFragmentController.of(new TestFragment())
+                                                      .create().start().resume();
 
         spyActivity = Mockito.spy(activityController.get());
         spySupportActivity = Mockito.spy(supportActivityController.get());
         spyFragment = Mockito.spy(fragmentController.get());
-        spySupportFragment = Mockito.spy(supportFragmentController.get());
     }
 
     private void tearDownActivityAndFragment() {
         activityController.pause().stop().destroy();
         supportActivityController.pause().stop().destroy();
         fragmentController.pause().stop().destroy();
-        supportFragmentController.pause().stop().destroy();
     }
 
     private void grantPermissions(String[] perms) {
@@ -825,7 +601,6 @@ public class EasyPermissionsTest {
             when(spyActivity.shouldShowRequestPermissionRationale(perm)).thenReturn(show);
             when(spySupportActivity.shouldShowRequestPermissionRationale(perm)).thenReturn(show);
             when(spyFragment.shouldShowRequestPermissionRationale(perm)).thenReturn(show);
-            when(spySupportFragment.shouldShowRequestPermissionRationale(perm)).thenReturn(show);
         }
     }
 }

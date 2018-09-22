@@ -3,7 +3,6 @@ package pub.devrel.easypermissions;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.Fragment;
 import android.content.DialogInterface;
 
 import org.junit.Before;
@@ -17,6 +16,8 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.util.Arrays;
+
+import androidx.fragment.app.Fragment;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.never;
@@ -48,8 +49,6 @@ public class RationaleDialogClickListenerTest {
     private Activity activity;
     @Mock
     private Fragment fragment;
-    @Mock
-    private androidx.fragment.app.Fragment supportFragment;
 
     @Before
     public void setUp() {
@@ -63,7 +62,7 @@ public class RationaleDialogClickListenerTest {
     @Test
     public void shouldOnRationaleAccepted_whenPositiveButtonWithRationaleCallbacks() {
         RationaleDialogClickListener listener = new RationaleDialogClickListener(dialogFragment, dialogConfig,
-                permissionCallbacks, rationaleCallbacks);
+                                                                                 permissionCallbacks, rationaleCallbacks);
         listener.onClick(dialogInterface, Dialog.BUTTON_POSITIVE);
 
         verify(rationaleCallbacks, times(1)).onRationaleAccepted(REQUEST_CODE);
@@ -72,7 +71,7 @@ public class RationaleDialogClickListenerTest {
     @Test
     public void shouldNotOnRationaleAccepted_whenPositiveButtonWithoutRationaleCallbacks() {
         RationaleDialogClickListener listener = new RationaleDialogClickListener(dialogFragment, dialogConfig,
-                permissionCallbacks, null);
+                                                                                 permissionCallbacks, null);
         listener.onClick(dialogInterface, Dialog.BUTTON_POSITIVE);
 
         verify(rationaleCallbacks, never()).onRationaleAccepted(anyInt());
@@ -81,7 +80,7 @@ public class RationaleDialogClickListenerTest {
     @Test
     public void shouldRequestPermissions_whenPositiveButtonFromActivity() {
         RationaleDialogClickListener listener = new RationaleDialogClickListener(dialogFragment, dialogConfig,
-                permissionCallbacks, rationaleCallbacks);
+                                                                                 permissionCallbacks, rationaleCallbacks);
         listener.onClick(dialogInterface, Dialog.BUTTON_POSITIVE);
 
         verify(activity, times(1)).requestPermissions(PERMS, REQUEST_CODE);
@@ -89,30 +88,19 @@ public class RationaleDialogClickListenerTest {
 
     @Test
     public void shouldRequestPermissions_whenPositiveButtonFromFragment() {
-        when(dialogFragment.getParentFragment()).thenReturn(fragment);
+        when(dialogFragmentCompat.getParentFragment()).thenReturn(fragment);
 
-        RationaleDialogClickListener listener = new RationaleDialogClickListener(dialogFragment, dialogConfig,
-                permissionCallbacks, rationaleCallbacks);
+        RationaleDialogClickListener listener = new RationaleDialogClickListener(dialogFragmentCompat, dialogConfig,
+                                                                                 permissionCallbacks, rationaleCallbacks);
         listener.onClick(dialogInterface, Dialog.BUTTON_POSITIVE);
 
         verify(fragment, times(1)).requestPermissions(PERMS, REQUEST_CODE);
     }
 
     @Test
-    public void shouldRequestPermissions_whenPositiveButtonFromSupportFragment() {
-        when(dialogFragmentCompat.getParentFragment()).thenReturn(supportFragment);
-
-        RationaleDialogClickListener listener = new RationaleDialogClickListener(dialogFragmentCompat, dialogConfig,
-                permissionCallbacks, rationaleCallbacks);
-        listener.onClick(dialogInterface, Dialog.BUTTON_POSITIVE);
-
-        verify(supportFragment, times(1)).requestPermissions(PERMS, REQUEST_CODE);
-    }
-
-    @Test
     public void shouldOnRationaleDenied_whenNegativeButtonWithRationaleCallbacks() {
         RationaleDialogClickListener listener = new RationaleDialogClickListener(dialogFragment, dialogConfig,
-                permissionCallbacks, rationaleCallbacks);
+                                                                                 permissionCallbacks, rationaleCallbacks);
         listener.onClick(dialogInterface, Dialog.BUTTON_NEGATIVE);
 
         verify(rationaleCallbacks, times(1)).onRationaleDenied(REQUEST_CODE);
@@ -121,7 +109,7 @@ public class RationaleDialogClickListenerTest {
     @Test
     public void shouldNotOnRationaleDenied_whenNegativeButtonWithoutRationaleCallbacks() {
         RationaleDialogClickListener listener = new RationaleDialogClickListener(dialogFragment, dialogConfig,
-                permissionCallbacks, null);
+                                                                                 permissionCallbacks, null);
         listener.onClick(dialogInterface, Dialog.BUTTON_NEGATIVE);
 
         verify(rationaleCallbacks, never()).onRationaleDenied(anyInt());
@@ -130,7 +118,7 @@ public class RationaleDialogClickListenerTest {
     @Test
     public void shouldOnPermissionsDenied_whenNegativeButtonWithPermissionCallbacks() {
         RationaleDialogClickListener listener = new RationaleDialogClickListener(dialogFragment, dialogConfig,
-                permissionCallbacks, rationaleCallbacks);
+                                                                                 permissionCallbacks, rationaleCallbacks);
         listener.onClick(dialogInterface, Dialog.BUTTON_NEGATIVE);
 
         verify(permissionCallbacks, times(1))
@@ -140,7 +128,7 @@ public class RationaleDialogClickListenerTest {
     @Test
     public void shouldNotOnPermissionsDenied_whenNegativeButtonWithoutPermissionCallbacks() {
         RationaleDialogClickListener listener = new RationaleDialogClickListener(dialogFragment, dialogConfig,
-                null, rationaleCallbacks);
+                                                                                 null, rationaleCallbacks);
         listener.onClick(dialogInterface, Dialog.BUTTON_NEGATIVE);
 
         verify(permissionCallbacks, never()).onPermissionsDenied(anyInt(), ArgumentMatchers.<String>anyList());

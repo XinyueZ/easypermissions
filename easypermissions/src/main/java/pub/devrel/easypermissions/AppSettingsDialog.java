@@ -94,8 +94,6 @@ public class AppSettingsDialog implements Parcelable {
             mContext = (Activity) activityOrFragment;
         } else if (activityOrFragment instanceof Fragment) {
             mContext = ((Fragment) activityOrFragment).getContext();
-        } else if (activityOrFragment instanceof android.app.Fragment) {
-            mContext = ((android.app.Fragment) activityOrFragment).getActivity();
         } else {
             throw new IllegalStateException("Unknown object: " + activityOrFragment);
         }
@@ -106,9 +104,6 @@ public class AppSettingsDialog implements Parcelable {
             ((Activity) mActivityOrFragment).startActivityForResult(intent, mRequestCode);
         } else if (mActivityOrFragment instanceof Fragment) {
             ((Fragment) mActivityOrFragment).startActivityForResult(intent, mRequestCode);
-        } else if (mActivityOrFragment instanceof android.app.Fragment) {
-            ((android.app.Fragment) mActivityOrFragment).startActivityForResult(intent,
-                    mRequestCode);
         }
     }
 
@@ -193,16 +188,6 @@ public class AppSettingsDialog implements Parcelable {
         public Builder(@NonNull Fragment fragment) {
             mActivityOrFragment = fragment;
             mContext = fragment.getContext();
-        }
-
-        /**
-         * Create a new Builder for an {@link AppSettingsDialog}.
-         *
-         * @param fragment the {@link android.app.Fragment} in which to display the dialog.
-         */
-        public Builder(@NonNull android.app.Fragment fragment) {
-            mActivityOrFragment = fragment;
-            mContext = fragment.getActivity();
         }
 
         /**

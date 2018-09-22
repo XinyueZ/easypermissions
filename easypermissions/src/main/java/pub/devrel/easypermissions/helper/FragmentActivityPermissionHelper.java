@@ -5,14 +5,15 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 /**
  * Permissions helper for {@link AppCompatActivity}.
  */
-class AppCompatActivityPermissionHelper extends BaseSupportPermissionsHelper<AppCompatActivity> {
+class FragmentActivityPermissionHelper extends BaseSupportPermissionsHelper<FragmentActivity> {
 
-    public AppCompatActivityPermissionHelper(AppCompatActivity host) {
+    public FragmentActivityPermissionHelper(FragmentActivity host) {
         super(host);
     }
 

@@ -20,6 +20,6 @@ android {
 }
 
 dependencies {
-    //implementation project(':easypermissions')
-    implementation "com.github.xinyuez:easypermissions:$mavenVersion"
+    implementation project(':easypermissions')
+    //implementation "com.github.xinyuez:easypermissions:$mavenVersion"
 }

@@ -41,8 +41,6 @@ class LowApiPermissionsHelper<T> extends PermissionHelper<T> {
             return (Context) getHost();
         } else if (getHost() instanceof Fragment) {
             return ((Fragment) getHost()).getContext();
-        } else if (getHost() instanceof android.app.Fragment) {
-            return ((android.app.Fragment) getHost()).getActivity();
         } else {
             throw new IllegalStateException("Unknown host: " + getHost());
         }
