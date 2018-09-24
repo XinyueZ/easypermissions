@@ -30,7 +30,7 @@ ext {
 
     mavenGroup = 'com.github.xinyuez'
     mavenArtifactId = 'easypermissions'
-    mavenVersion = '2.0.0'
+    mavenVersion = '2.0.1'
 
     bintrayOrg = 'devxinyuezhao'
 
